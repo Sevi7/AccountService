@@ -40,7 +40,7 @@ public class AccountService {
 		}
 
 		if(!senderAccount.isTreasury() && senderAccount.getBalance() < amount) {
-			throw new AccountServiceException("The Account " + senderAccount.getId() + " is not Treasury and does not have enough balance for the transfer of " + amount);
+			throw new AccountServiceException("The Account " + senderAccount.getId() + " is not Treasury and does not have enough balance for the transfer of " + amount + " " + senderAccount.getCurrency());
 		}
 
 		senderAccount.debit(amount);

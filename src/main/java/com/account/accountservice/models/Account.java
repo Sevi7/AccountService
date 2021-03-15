@@ -8,12 +8,10 @@ import javax.validation.constraints.NotEmpty;
 import com.account.accountservice.controllers.validators.PositiveBalanceNonTreasuryConstraint;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Entity
-@NoArgsConstructor
 @PositiveBalanceNonTreasuryConstraint
 public class Account {
 	@Id @GeneratedValue
@@ -26,6 +24,8 @@ public class Account {
 	private double balance;
 	private boolean treasury;
 
+	@NotEmpty
+	@PositiveBalanceNonTreasuryConstraint
 	public Account (String name, String currency, double balance, boolean treasury) {
 		this.name=name;
 		this.currency=currency;

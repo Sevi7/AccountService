@@ -9,7 +9,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Constraint(validatedBy = PositiveBalanceNonTreasuryValidator.class)
-@Target({ ElementType.TYPE })
+@Target({ ElementType.TYPE, ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PositiveBalanceNonTreasuryConstraint {
 	String message() default "Only Treasury Accounts can have a negative balance";
