@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.account.accountservice.services.AccountService;
 import com.account.accountservice.exceptions.AccountNotFoundException;
 import com.account.accountservice.models.Account;
+import com.account.accountservice.models.Transfer;
 
 @RestController
 public class AccountController {
@@ -38,5 +39,18 @@ public class AccountController {
 	public Account create(@Valid @RequestBody Account account) {
 		return accountService.save(account);
 	}
+	
+	@PostMapping(value="/accounts/transfer")
+	public Transfer create(@Valid @RequestBody Transfer transfer) {
+		Account senderAccount = accountService.get(transfer.getSenderAccount())
+				.orElseThrow(()-> new AccountNotFoundException("Account with id " + transfer.getSenderAccount() + " was not found"));
+		Account receiverAccount = accountService.get(transfer.getReceiverAccount())
+				.orElseThrow(()-> new AccountNotFoundException("Account with id " + transfer.getReceiverAccount() + " was not found"));
+		
+		this.accountService.makeTransfer(senderAccount, receiverAccount, transfer.getAmount());
+		
+		return transfer;
+	}
+	
 	
 }

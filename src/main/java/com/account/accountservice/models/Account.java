@@ -32,5 +32,15 @@ public class Account {
 		this.balance=balance;
 		this.treasury=treasury;
 	}
+	
+	public double credit(double amount) {
+		this.balance+=amount;
+		return balance;
+	}
+	
+	public double debit(double amount) {
+		this.balance-=amount;
+		return balance;
+	}
 
 }
