@@ -8,10 +8,12 @@ import javax.validation.constraints.NotEmpty;
 import com.account.accountservice.controllers.validators.PositiveBalanceNonTreasuryConstraint;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @PositiveBalanceNonTreasuryConstraint
 public class Account {
 	@Id @GeneratedValue
