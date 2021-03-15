@@ -3,6 +3,9 @@ package com.account.accountservice.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+import com.account.accountservice.controllers.validators.PositiveBalanceNonTreasuryConstraint;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,10 +14,13 @@ import lombok.Setter;
 @Getter
 @Entity
 @NoArgsConstructor
+@PositiveBalanceNonTreasuryConstraint
 public class Account {
 	@Id @GeneratedValue
 	private int id;
+	@NotEmpty(message = "Name is required")
 	private String name;
+	@NotEmpty(message = "Currency is required")
 	private String currency;
 	@Setter
 	private double balance;
